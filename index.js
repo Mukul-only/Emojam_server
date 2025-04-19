@@ -65,8 +65,9 @@ app.get("/rooms", (req, res) => {
 // Socket.IO setup
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
