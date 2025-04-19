@@ -29,10 +29,23 @@ const app = express();
 const server = http.createServer(app);
 
 // CORS setup
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://emojam-dun.vercel.app",
+];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "https://emojam-dun.vercel.app/",
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like curl or mobile apps)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS: " + origin));
+      }
+    },
     methods: ["GET", "POST"],
+    credentials: true,
   })
 );
 
