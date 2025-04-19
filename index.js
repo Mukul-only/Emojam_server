@@ -31,7 +31,7 @@ const server = http.createServer(app);
 // CORS setup
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://emojam-dun.vercel.app",
+  "https://emojam-five.vercel.app/",
 ];
 
 app.use(
